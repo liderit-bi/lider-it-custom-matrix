@@ -1,0 +1,26 @@
+{
+    "visual": {
+        "name": "liderFinancialMatrix",
+        "displayName": "LIDER IT Custom Matrix",
+        "guid": "liderFinancialMatrixF1CC92BB35864144B635452FC3EB850F",
+        "visualClassName": "Visual",
+        "version": "1.12.0.0",
+        "description": "Matriz para informes financieros: formato completo por fila (incluido el encabezado de fila), subtotales, expandir y contraer filas y columnas y obtención de detalles.",
+        "supportUrl": "https://www.lider-it.com",
+        "gitHubUrl": "https://github.com/<organizacion>/lider-it-custom-matrix"
+    },
+    "apiVersion": "5.11.1",
+    "author": {
+        "name": "LIDER IT",
+        "email": "soporte@lider-it.com"
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "externalJS": null,
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": [],
+    "version": "1.12.0.0"
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LIDER IT Custom Matrix — vista previa</title>
+<style>
+:root {
+  --page: #EDEBE9; --ink: #252423; --muted: #605E5C; --card: #FFFFFF; --edge: #D2D0CE; --accent: #1F3864;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --page: #1B1A19; --ink: #F3F2F1; --muted: #B3B0AD; --card: #FFFFFF; --edge: #3B3A39; --accent: #9DB7E0; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --page: #1B1A19; --ink: #F3F2F1; --muted: #B3B0AD; --card: #FFFFFF; --edge: #3B3A39; --accent: #9DB7E0; color-scheme: dark; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+body { margin: 0; background: var(--page); color: var(--ink); font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 20px 14px 32px; }
+h1 { font-size: 1.35rem; font-weight: 600; margin: 0 0 4px; }
+.lead { margin: 0 0 16px; color: var(--muted); font-size: .92rem; line-height: 1.45; max-width: 70ch; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 12px; font-size: .88rem; }
+.controls label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.controls select, .controls input[type=number] { font: inherit; padding: 2px 4px; }
+.controls input[type=number] { width: 4.5em; }
+.controls input[type=text] { font: inherit; padding: 2px 4px; width: 12em; }
+.controls.rules { padding: 8px 10px; background: var(--card); color: #252423; border: 1px solid var(--edge); border-radius: 4px; align-items: center; }
+.canvas { background: var(--card); border: 1px solid var(--edge); border-radius: 4px; padding: 10px; }
+.canvas h2 { margin: 0 0 8px; font-size: 1rem; font-weight: 600; color: #252423; }
+#visual { position: relative; height: 520px; }
+body[data-scenario="listado"] .only-pyg, body[data-scenario="pyg"] .only-listado { display: none; }
+.hint { margin: 12px 0 0; color: var(--muted); font-size: .85rem; line-height: 1.45; max-width: 75ch; }
+/*__VISUAL_CSS__*/
+</style>
+</head>
+<body>
+<main>
+  <h1>LIDER IT Custom Matrix</h1>
+  <p class="lead">Vista previa de la versión 1.11 (v12) con el código real del visual y una cuenta de resultados de ejemplo. Los controles simulan el panel de formato de Power BI.</p>
+  <div class="controls">
+    <label><strong>Ejemplo</strong>
+      <select id="scenario">
+        <option value="listado" selected>Listado de un nivel (sin subtotales)</option>
+        <option value="pyg">Cuenta de resultados jerárquica</option>
+      </select>
+    </label>
+    <label>Ancho de columnas
+      <select data-obj="columnHeaders" data-prop="widthMode">
+        <option value="content">Ajustar al contenido</option>
+        <option value="fill">Ajustar al ancho del visual</option>
+        <option value="fixed">Ancho fijo</option>
+      </select>
+    </label>
+  </div>
+  <div class="controls only-listado rules">
+    <strong>Formato de filas 1</strong>
+    <label><input type="checkbox" data-obj="rowFormat1" data-prop="show" checked> Producción, Gastos Directos, Margen Bruto, Total Coste Indirecto, EBIT, Margen Neto</label>
+    <strong>Formato de filas 2</strong>
+    <label><input type="checkbox" data-obj="rowFormat2" data-prop="show" checked> Indentacion =
+      <input type="number" step="1" value="1" data-obj="rowFormat2" data-prop="value"> → texto gris en cursiva</label>
+        <strong>Encabezado de fila</strong>
+    <label><input type="checkbox" data-obj="rowHeaders" data-prop="showTitle" checked> Mostrar título</label>
+    <label>Título <input type="text" placeholder="Vacío = nombre del campo" data-obj="rowHeaders" data-prop="title"></label>
+    <strong>Valores</strong>
+    <label>Negativos en rojo en
+      <select id="negMeasure">
+        <option value="OCGC" selected>Solo OC/GC</option>
+        <option value="Contable">Solo Contable</option>
+        <option value="TotalImporte">Solo Total</option>
+        <option value="*">Todas las medidas</option>
+        <option value="">Ninguna</option>
+      </select>
+    </label>
+    <label><input type="checkbox" id="valIcons"> Colorear positivos e iconos ✓ ✕</label>
+  </div>
+  <div class="controls only-pyg">
+    <label>Subtotal
+      <select data-obj="subTotals" data-prop="position">
+        <option value="top">En la fila del grupo</option>
+        <option value="bottom">Fila al final del grupo</option>
+      </select>
+    </label>
+    <label><input type="checkbox" data-obj="valuesFormat" data-prop="negativeParentheses"> Negativos entre paréntesis</label>
+    <label><input type="checkbox" data-obj="valuesFormat" data-prop="negativeRed"> Negativos en rojo</label>
+    <label><input type="checkbox" data-obj="general" data-prop="bandedRows"> Filas alternas</label>
+    <label><input type="checkbox" data-obj="subTotals" data-prop="columnSubtotals" checked> Subtotales de columna</label>
+    <label><input type="checkbox" id="hc"> Alto contraste</label>
+  </div>
+  <div class="controls rules only-pyg">
+    <strong>Formato condicional 1 · Desv. %</strong>
+    <label><input type="checkbox" data-obj="cfRule1" data-prop="show" checked> Activar</label>
+    <label>Tipo
+      <select data-obj="cfRule1" data-prop="kind">
+        <option value="thresholds" selected>Umbrales (semáforo)</option>
+        <option value="scale">Escala de color</option>
+        <option value="bars">Barras de datos</option>
+      </select>
+    </label>
+    <label>Aplicar a
+      <select data-obj="cfRule1" data-prop="applyTo">
+        <option value="icon" selected>Icono ▲ ● ▼</option>
+        <option value="background">Fondo de la celda</option>
+        <option value="font">Color del texto</option>
+      </select>
+    </label>
+    <label>Rojo si &lt; <input type="number" step="0.5" value="-2" data-obj="cfRule1" data-prop="lowLimit"> %</label>
+    <label>Verde si ≥ <input type="number" step="0.5" value="2" data-obj="cfRule1" data-prop="highLimit"> %</label>
+  </div>
+  <div class="controls rules only-pyg">
+    <strong>Formato condicional 2 · Real</strong>
+    <label><input type="checkbox" data-obj="cfRule2" data-prop="show"> Barras de datos</label>
+    <strong>Medida «Formato de celda»</strong>
+    <label><input type="checkbox" id="cellMeasure" checked> Real en rojo si desviación &lt; −5 %</label>
+  </div>
+  <div class="canvas">
+    <h2>Informe</h2>
+    <div id="visual"></div>
+  </div>
+  <p class="hint">Arrastra el borde derecho de cualquier encabezado para cambiar el ancho de la columna; doble clic para volver al ajuste automático. En el ejemplo jerárquico, usa + y − para expandir epígrafes o contraer un año completo desde su encabezado. Pulsa una fila para seleccionarla (Ctrl para varias). Margen bruto, EBITDA y Resultado son filas calculadas con su propio estilo desde la medida de estilo. Pulsa + en 2025 o 2026 para ver los trimestres. Las reglas excluyen por defecto subtotales y totales.</p>
+</main>
+<script>/*__VISUAL_JS__*/</script>
+</body>
+</html>
