@@ -6,13 +6,13 @@
         "visualClassName": "Visual",
         "version": "1.12.0.0",
         "description": "Matriz para informes financieros: formato completo por fila (incluido el encabezado de fila), subtotales, expandir y contraer filas y columnas y obtención de detalles.",
-        "supportUrl": "https://www.lider-it.com",
-        "gitHubUrl": "https://github.com/<organizacion>/lider-it-custom-matrix"
+        "supportUrl": "https://liderit.es",
+        "gitHubUrl": "https://github.com/liderit-bi/lider-it-custom-matrix"
     },
     "apiVersion": "5.11.1",
     "author": {
         "name": "LIDER IT",
-        "email": "soporte@lider-it.com"
+        "email": "soporte.bi@liderit.es"
     },
     "assets": {
         "icon": "assets/icon.png"

@@ -1,10 +1,10 @@
 {
   "name": "lider-it-custom-matrix",
   "description": "LIDER IT Custom Matrix - visual personalizado de Power BI para informes financieros",
-  "version": "1.12.0.0",
+  "version": "1.13.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<organizacion>/lider-it-custom-matrix.git"
+    "url": "https://github.com/liderit-bi/lider-it-custom-matrix.git"
   },
   "license": "MIT",
   "scripts": {
