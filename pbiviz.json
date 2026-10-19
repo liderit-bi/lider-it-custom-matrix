@@ -4,7 +4,7 @@
         "displayName": "LIDER IT Custom Matrix",
         "guid": "liderFinancialMatrixF1CC92BB35864144B635452FC3EB850F",
         "visualClassName": "Visual",
-        "version": "1.12.0.0",
+        "version": "1.13.0.0",
         "description": "Matriz para informes financieros: formato completo por fila (incluido el encabezado de fila), subtotales, expandir y contraer filas y columnas y obtención de detalles.",
         "supportUrl": "https://liderit.es",
         "gitHubUrl": "https://github.com/liderit-bi/lider-it-custom-matrix"
@@ -22,5 +22,5 @@
     "capabilities": "capabilities.json",
     "dependencies": null,
     "stringResources": [],
-    "version": "1.12.0.0"
+    "version": "1.13.0.0"
 }
